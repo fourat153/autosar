@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://autosar.org/schema/r4.0 file://E:\Embedded\eclipse-workspace\xml\AUTOSAR_ARXML_Schema\AUTOSAR_00046.xsd">
+	<AR-PACKAGES>
+		<AR-PACKAGE>
+			<SHORT-NAME>Runnable_Lab1</SHORT-NAME>
+			
+			<ELEMENTS>
+				<!-- SWCs Interfaces -->
+				<SENDER-RECEIVER-INTERFACE>
+					<SHORT-NAME>SRI_Throttle</SHORT-NAME>
+					<DATA-ELEMENTS>
+						<VARIABLE-DATA-PROTOTYPE>
+							<SHORT-NAME>CMD</SHORT-NAME>
+							<TYPE-TREF DEST="IMPLEMENTATION-DATA-TYPE">/AUTOSAR_PlatformTypes/ImplementationDataTypes/uint32</TYPE-TREF>
+						</VARIABLE-DATA-PROTOTYPE>
+					</DATA-ELEMENTS>
+				</SENDER-RECEIVER-INTERFACE>
+				<!-- SWCs Definition -->
+				<APPLICATION-SW-COMPONENT-TYPE>
+					<SHORT-NAME>ThrottleControlSWC</SHORT-NAME>
+					<PORTS>
+						<P-PORT-PROTOTYPE>
+							<SHORT-NAME>PP_SRI_ThrottleCMD</SHORT-NAME>
+							<PROVIDED-INTERFACE-TREF
+								DEST="SENDER-RECEIVER-INTERFACE">/SRI_Throttle</PROVIDED-INTERFACE-TREF>
+						</P-PORT-PROTOTYPE>
+					</PORTS>
+					<INTERNAL-BEHAVIORS>
+						<SWC-INTERNAL-BEHAVIOR>
+							<SHORT-NAME>ThrottleController_Behavior</SHORT-NAME>
+							<RUNNABLES>
+								<RUNNABLE-ENTITY>
+									<SHORT-NAME>Set_CMD_runnable</SHORT-NAME>
+									<SYMBOL>Set_CMD</SYMBOL>
+									<MINIMUM-START-INTERVAL>0.0</MINIMUM-START-INTERVAL>
+									<CAN-BE-INVOKED-CONCURRENTLY>false</CAN-BE-INVOKED-CONCURRENTLY>
+									<DATA-WRITE-ACCESSS>
+										<VARIABLE-ACCESS>
+											<SHORT-NAME>CMD_Data</SHORT-NAME>
+											<ACCESSED-VARIABLE>
+												<AUTOSAR-VARIABLE-IREF>
+													<PORT-PROTOTYPE-REF
+														DEST="P-PORT-PROTOTYPE">/ThrottleControlSWC/PP_SRI_ThrottleCMD</PORT-PROTOTYPE-REF>
+													<TARGET-DATA-PROTOTYPE-REF
+														DEST="VARIABLE-DATA-PROTOTYPE">/SRI_Throttle/CMD</TARGET-DATA-PROTOTYPE-REF>
+												</AUTOSAR-VARIABLE-IREF>
+											</ACCESSED-VARIABLE>
+										</VARIABLE-ACCESS>
+									</DATA-WRITE-ACCESSS>
+								</RUNNABLE-ENTITY>
+							</RUNNABLES>
+						</SWC-INTERNAL-BEHAVIOR>
+					</INTERNAL-BEHAVIORS>
+				</APPLICATION-SW-COMPONENT-TYPE>
+			</ELEMENTS>
+		</AR-PACKAGE>
+	</AR-PACKAGES>
+</AUTOSAR>
